@@ -11,12 +11,10 @@ const Input = () => {
   }
   return (
     <div>
-      <input placeholder='아이디' />
-      <input placeholder='닉네임' />
+      <input onChange={onChange} value={text}  />
       <button onClick={onReset}>초기화</button>
       <div>
-        <b>입력값 : </b>
-        아이디 (닉네임)
+        입력값 : {text}
       </div>
     </div>
   )
