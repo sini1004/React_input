@@ -11,8 +11,8 @@ const Input = () => {
   }
   return (
     <div>
-      <input placeholder='아이디' />
-      <input placeholder='닉네임' />
+      <input name = 'id' placeholder='아이디' onChange={onChange} />
+      <input name='nick' placeholder='닉네임' onChange={onChange}/>
       <button onClick={onReset}>초기화</button>
       <div>
         <b>입력값 : </b>
