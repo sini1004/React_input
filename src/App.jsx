@@ -1,10 +1,10 @@
 import './App.css';
-import Input from '/.Input.jsx';
+import Input from './Input';
 
 function App() {
   return (
     <>
-    test
+    <Input/>
     </>
   );
 }
