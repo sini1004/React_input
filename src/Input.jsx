@@ -1,34 +1,39 @@
-import { getValue } from '@testing-library/user-event/dist/utils';
-import React, {useState} from 'react'
+import React, {useState, useRef} from 'react'
 
+/**
+  특정 DOM을 직접 선택해야 할 때 : useRef라는 Hook 함수 사용
+ */
 const Input = () => {
   const [inputs, setInputs] = useState({
     id : '',
     nick : ''
   });
 
-  const { id, nick } = inputs; //비구조화 할당을 통해 추출
+  const focusInput = useRef(); //focusInput이라는 객체 생성
 
-  const onChange = (e) => { //input에 입력할때마다 발생하는 함수
-    const {value, name} = e.target; //e.target에서 name과 value 추출
+  const { id, nick } = inputs; 
+
+  const onChange = (e) => { 
+    const {value, name} = e.target; 
 
     setInputs({
       ...inputs,
       [name] : value,
     });
   };
-    //react에서는 기준 객체를 업데이트할때 - 기존객체 복사뒤 덮어씌우는 방식
+  
 
   const onReset = () => {
     setInputs({
       id : '',
       nick : ''
     })
+    focusInput.current.focus(); //current는 DOM 을 가리키게되고 focus함수 호출
   };
 
   return (
     <div>
-      <input name = 'id' placeholder='아이디' onChange={onChange} value = {id} />
+      <input name = 'id' placeholder='아이디' onChange={onChange} value = {id} ref = {focusInput}/>
       <input name = 'nick' placeholder='닉네임' onChange={onChange} value = {nick} />
       <button onClick={onReset}>초기화</button>
       <div>
